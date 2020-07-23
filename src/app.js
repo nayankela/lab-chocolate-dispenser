@@ -86,25 +86,46 @@ function dispenseChocolatesOfColor(chocolates, number, color) {
 
 //Progression 5: Display ___ chocolates of each color. Return array of numbers [green, silver, blue, crimson, purple, red, pink]
 function noOfChocolates(chocolates) {
-    var choices = ['green', 'silver', 'blue', 'crimson', 'purple', 'red', 'pink'];
-    var candies = [];
-    while (choices.length > 0) {
-        let count = 0;
-        let choiceCounter = 0;
-        for (let i = 0; i < chocolates.length; i++) {
-            if (chocolates[i] == choices[choiceCounter]) {
-                candies[i] = ++count;
-            }
+    var count = 0;
+    var noOfCandy = [];
+    var a = 0;
+    var candy = ["green", "silver", "blue", "crimson", "purple", "red", "pink"];
+    while (count < candy.length) {
+        for (var i = 0; i < chocolates.length; i++) {
+            if (chocolates[i] == candy[count])
+                noOfCandy[count] = ++a;
         }
-        choiceCounter++;
-        len--;
+        count++;
+        a = 0;
     }
-    return candies.filter(Number);
+    return noOfCandy.filter(Number);
 }
 
 //Progression 6: Sort chocolates based on count in each color. Return array of colors
-function sortChocolateBasedOnCount() {
-    
+function sortChocolateBasedOnCount(chocolates) {
+  let choco = chocolates.reduce(function (b, a) {
+        if (a in b) {
+            b[a]++;
+        } else {
+            b[a] = 1;
+        }
+        return b;
+    }, {});
+    let Array = chocolates.sort((a, b) => {
+        if (choco[b] > choco[a]) {
+            return 1;
+        }
+        if (choco[b] < choco[a]) {
+            return -1;
+        }
+        if (a > b) {
+            return 1;
+        }
+        if (a < b) {
+            return -1;
+        }
+    });
+    chocolates = Array;  
 }
 
 //Progression 7: Change ___ chocolates of ____ color to ____ color
